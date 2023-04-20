@@ -1,8 +1,11 @@
-
+import scipy.stats as stats
 import pandas as pd
 import os
 
 import env
+
+
+
 
 #This function returns a url for a mysql database based on the data base name and env credituals
 def get_db_url(data_base):
@@ -35,3 +38,4 @@ filename = "datbase_name.csv"
 
 """
 #then use this call: dataframe_name = get_sql_data(sql_query, directory, url_for_query, filename)
+
