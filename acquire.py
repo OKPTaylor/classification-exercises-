@@ -22,6 +22,7 @@ def get_sql_data(sql_query, directory, url_for_query, filename):
     
     if os.path.exists(directory+filename): 
         df = pd.read_csv(filename)
+        print("csv found and loaded")
         return df
     else:
         df = new_sql_data_query(sql_query , url_for_query)
