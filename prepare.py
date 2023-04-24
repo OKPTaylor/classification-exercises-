@@ -6,6 +6,27 @@ import scipy.stats as stats
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
+#removes all columns with more than 5% nulls, NaNs, Na, Nones
+def null_remove(df_name):
+    for col in df_name.columns:
+        if df_name[col].isna().value_counts("False")[0] < 0.95:
+            df_name.drop(columns=[col], inplace=True)   
+
+#brings back all the columns that may be duplicates
+def col_dup(df_name):
+    for col1 in df_name.columns:
+        for col in df_name.columns:
+            temp_crosstab=pd.crosstab(df_name[col] , df_name[col1])
+            if temp_crosstab.iloc[0,0] != 0 and temp_crosstab.iloc[0,1] == 0 and temp_crosstab.iloc[1,0] == 0 and temp_crosstab.iloc[1,1] !=0:
+                if col1 != col:
+                    print(f"\n{col1} and {col} may be the duplicates\n")
+                    
+                    print(temp_crosstab.iloc[0:3,0:3])
+                    print("--------------------------------------------")
+       
+#call should look like: prep.col_dup(df_name)
+
+
 #this is a function to split your data into train, validate, and test sets
 
 def split_function(df_name, target_varible_column_name):
