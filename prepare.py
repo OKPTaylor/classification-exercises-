@@ -9,8 +9,10 @@ from sklearn.model_selection import train_test_split
 #removes all columns with more than 5% nulls, NaNs, Na, Nones
 def null_remove(df_name):
     for col in df_name.columns:
-        if df_name[col].isna().value_counts("False")[0] < 0.95:
-            df_name.drop(columns=[col], inplace=True)   
+        if df_name[col].isna().value_counts("False")[0] < 0.95: #tests if a row cotains more than 5% nulls, NaNs, ect. 
+            df_name.drop(columns=[col], inplace=True)
+            print(f"Column {col} has been dropped because it contains more than 5% nulls")   
+#call should be: prep.null_remove(df_name)           
 
 #brings back all the columns that may be duplicates
 def col_dup(df_name):
